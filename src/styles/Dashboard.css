@@ -1,0 +1,40 @@
+ .dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.dashboard-title h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.dashboard-title p {
+  color: #6e6e73;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.bank-details-btn {
+  padding: 10px 16px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.bank-details-btn:hover {
+  background-color: #333;
+}
+
+.earnings-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 30px;
+}

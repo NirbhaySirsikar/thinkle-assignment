@@ -1,0 +1,43 @@
+ .earnings-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.earnings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.earnings-table th {
+  text-align: left;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6e6e73;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.earnings-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: #1d1d1f;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-paid {
+  background-color: rgba(52, 199, 89, 0.1);
+  color: #34c759;
+}
+
+.status-progress {
+  background-color: rgba(100, 210, 255, 0.1);
+  color: #64d2ff;
+}
