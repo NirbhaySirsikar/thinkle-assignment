@@ -96,11 +96,12 @@ The application is structured using reusable React components:
 CSS files are organized alongside their corresponding components:
 
 - **global.css**: Base styles and global CSS variables
-- **sidebar.css**: Styles for the sidebar, organized into smaller files:
-  - **base.css**: Core sidebar styling
-  - **logo.css**: Logo-specific styles
-  - **navigation.css**: Navigation menu styling
-  - **mobile.css**: Mobile-specific sidebar adjustments
+- **Sidebar.css**: Styles for the sidebar
+- **Dashboard.css**: Styles for the dashboard
+- **BankDetailsForm.css**: Styles for the bank detail form modal
+- **EarningsCard.css**: Styles for the Earnings Cards on the dashboard
+- **EarningsTable.css**: Styles for the Earnings Table on the dashboard
+- **Button.css**: Styles for the button
 
 ### Responsive Design
 
