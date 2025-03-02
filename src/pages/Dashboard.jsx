@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../components/Button';
 import EarningsCard from '../components/EarningsCard';
 import EarningsTable from '../components/EarningsTable';
@@ -8,8 +8,17 @@ import '../styles/Dashboard.css';
 
 const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
-  // Sample data for the earnings table
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const earningsData = [
     {
       month: 'January 2025',
@@ -46,7 +55,7 @@ const Dashboard = () => {
           <h1>Thinkle+ Creator</h1>
           <p>Create Content that generate revenue for you</p>
         </div>
-        <Button onClick={openModal}>Add Bank Details</Button>
+        {!isMobile && <Button onClick={openModal}>Add Bank Details</Button> }
       </div>
 
       <div className="earnings-overview">

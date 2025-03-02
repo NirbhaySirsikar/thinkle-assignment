@@ -1,6 +1,5 @@
- .earnings-table-container {
+.earnings-table-container {
   width: 100%;
-  overflow-x: auto;
 }
 
 .earnings-table {
@@ -40,4 +39,64 @@
 .status-progress {
   background-color: rgba(100, 210, 255, 0.1);
   color: #64d2ff;
+}
+
+/* Mobile card layout */
+.mobile-earnings-cards {
+  display: none;
+}
+
+.mobile-earnings-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-row {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.card-col {
+  flex: 1;
+}
+
+.card-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+}
+
+.card-value {
+  font-size: 14px;
+  color: #6e6e73;
+  margin-bottom: 4px;
+}
+
+.mobile-status-badge {
+  color: #00722A; 
+  margin-right: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .desktop-view {
+    display: none;
+  }
+  
+  .mobile-earnings-cards {
+    display: block;
+  }
+  
+  .mobile-earnings-card {
+    margin-bottom: 16px;
+  }
 }

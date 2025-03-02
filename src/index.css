@@ -30,5 +30,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary: #FCEB00;
+  --muted: #858893;
 }
 
