@@ -1,3 +1,7 @@
+.profile-container{
+padding: 0px !important;
+}
+
 .profile-header {
   display: flex;
   justify-content: space-between;
@@ -39,4 +43,13 @@
 .profile-tabs button.active {
     background-color: #000;
     color: #fff;
+}
+
+@media not all and (min-width: 768px) {
+    .profile-tabs {
+        gap: 0.5rem;
+    }
+    .profile-tabs button {
+        padding: 0.5rem 0.75rem;
+    }
 }
