@@ -51,9 +51,11 @@ const Sidebar = () => {
               <path d="M3 18H21" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
+          <>
           {location.pathname === '/' && 
             <Button onClick={openModal}>Add Bank Details</Button>
           }
+          </>
         </div>
       )}
 
