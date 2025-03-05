@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Profile/MyProfile.css";
 import profileBanner from "../../assets/images/profile-banner.webp";
+import femaleAvatar from "../../assets/images/female-avatar.png";
 export default function MyProfileContainer() {
-const [aboutMe, setAboutMe] = useState('');
-  const [profileHeader, setProfileHeader] = useState('');
-  const [whyICoach, setWhyICoach] = useState('');
+  const [aboutMe, setAboutMe] = useState("");
+  const [profileHeader, setProfileHeader] = useState("");
+  const [whyICoach, setWhyICoach] = useState("");
   const [languages, setLanguages] = useState([]);
   const [helpTopics, setHelpTopics] = useState([]);
   const [questions, setQuestions] = useState([]);
@@ -21,7 +22,7 @@ const [aboutMe, setAboutMe] = useState('');
   };
 
   const removeTag = (collection, setCollection) => {
-    setCollection(collection.filter(tag => tag.id !== id));
+    setCollection(collection.filter((tag) => tag.id !== id));
   };
 
   const handleSaveChanges = () => {
@@ -36,11 +37,11 @@ const [aboutMe, setAboutMe] = useState('');
   };
 
   const TagSection = ({ title, tags, onAddTag, onRemoveTag, placeholder }) => {
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState("");
 
     const handleAddTag = () => {
       if (onAddTag(inputValue)) {
-        setInputValue('');
+        setInputValue("");
       }
     };
 
@@ -49,10 +50,13 @@ const [aboutMe, setAboutMe] = useState('');
         <h3>{title}</h3>
         {tags.length > 0 && (
           <div className="tags-container">
-            {tags.map(tag => (
+            {tags.map((tag) => (
               <div key={tag.id} className="tag">
                 <span>{tag.text}</span>
-                <button onClick={() => onRemoveTag(tag.id)} className="tag-remove-btn">
+                <button
+                  onClick={() => onRemoveTag(tag.id)}
+                  className="tag-remove-btn"
+                >
                   <X size={14} />
                 </button>
               </div>
@@ -70,14 +74,22 @@ const [aboutMe, setAboutMe] = useState('');
   };
   return (
     <>
- <div className="profile-content">
+      <div className="profile-content">
         <div className="profile-left">
           <div className="profile-section user-info">
             <div className="user-banner">
-<img src={profileBanner} alt="Profile banner" className="banner-img" />
-              <div className="user-avatar">
-<img src={profileBanner} alt="Profile banner" className="banner-img" />
-              </div>
+              <img
+                src={profileBanner}
+                alt="Profile banner"
+                className="banner-img"
+              />
+            </div>
+            <div className="user-avatar">
+              <img
+                src={femaleAvatar}
+                alt="profile avatar"
+                className="banner-img"
+              />
             </div>
             <div className="user-details">
               <h2>Dipankar Datta</h2>
@@ -91,8 +103,8 @@ const [aboutMe, setAboutMe] = useState('');
 
           <div className="profile-section">
             <h3>About Me</h3>
-            <textarea 
-              placeholder="Write about yourself..." 
+            <textarea
+              placeholder="Write about yourself..."
               value={aboutMe}
               onChange={(e) => setAboutMe(e.target.value)}
               rows={6}
@@ -102,9 +114,9 @@ const [aboutMe, setAboutMe] = useState('');
 
           <div className="profile-section">
             <h3>Profile Header</h3>
-            <input 
-              type="text" 
-              placeholder="e.g. Career Coach, MBA Coach etc." 
+            <input
+              type="text"
+              placeholder="e.g. Career Coach, MBA Coach etc."
               value={profileHeader}
               onChange={(e) => setProfileHeader(e.target.value)}
               className="text-input"
@@ -115,8 +127,8 @@ const [aboutMe, setAboutMe] = useState('');
         <div className="profile-right">
           <div className="profile-section">
             <h3>Why do I coach?</h3>
-            <textarea 
-              placeholder="Write why do you coach..." 
+            <textarea
+              placeholder="Write why do you coach..."
               value={whyICoach}
               onChange={(e) => setWhyICoach(e.target.value)}
               rows={4}
@@ -124,21 +136,21 @@ const [aboutMe, setAboutMe] = useState('');
             />
           </div>
 
-          <TagSection 
+          <TagSection
             title="What Can I help you with?"
             tags={helpTopics}
             onAddTag={(text) => addTag(helpTopics, setHelpTopics, text)}
             onRemoveTag={(id) => removeTag(helpTopics, setHelpTopics, id)}
           />
 
-          <TagSection 
+          <TagSection
             title="Set of questions you can ask"
             tags={questions}
             onAddTag={(text) => addTag(questions, setQuestions, text)}
             onRemoveTag={(id) => removeTag(questions, setQuestions, id)}
           />
 
-          <TagSection 
+          <TagSection
             title="Languages I speak"
             tags={languages}
             onAddTag={(text) => addTag(languages, setLanguages, text)}
