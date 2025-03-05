@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
-import "./styles/global.css";
 import Profile from "./pages/Profile";
+import "./styles/global.css";
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);

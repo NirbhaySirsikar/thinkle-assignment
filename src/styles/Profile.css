@@ -1,0 +1,42 @@
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.profile-title h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-title p {
+  color: #6e6e73;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.profile-tabs {
+    display: flex;
+    margin-bottom: 24px;
+    gap: 1rem;
+    padding: 0.5rem;
+    background-color: #E6E8EA;
+    width: fit-content;
+    border-radius: 0.75rem;
+}
+
+.profile-tabs button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: transparent;
+    color: #6e6e73;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 0.5rem;
+}
+
+.profile-tabs button.active {
+    background-color: #000;
+    color: #fff;
+}
