@@ -12,7 +12,7 @@ export default function MyProfileContainer() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
 
-  const addTag = (collection, setCollection) => {
+  const addTag = (collection, setCollection, text) => {
     if (text.trim()) {
       const newTag = { id: Date.now().toString(), text: text.trim() };
       setCollection([...collection, newTag]);
@@ -21,7 +21,7 @@ export default function MyProfileContainer() {
     return false;
   };
 
-  const removeTag = (collection, setCollection) => {
+  const removeTag = (collection, setCollection, id) => {
     setCollection(collection.filter((tag) => tag.id !== id));
   };
 
@@ -57,16 +57,22 @@ export default function MyProfileContainer() {
                   onClick={() => onRemoveTag(tag.id)}
                   className="tag-remove-btn"
                 >
-                  <X size={14} />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" > <path d="M18 6 6 18" /> <path d="m6 6 12 12" /> </svg>
                 </button>
               </div>
             ))}
           </div>
         )}
         <div className="add-tag-container">
+          <input
+            type="text"
+            className="text-input"
+            placeholder={placeholder || "Enter tag..."}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
           <button className="add-btn" onClick={handleAddTag}>
             + Add
-            {/* <Plus size={16} /> Add */}
           </button>
         </div>
       </div>
@@ -101,7 +107,7 @@ export default function MyProfileContainer() {
             </div>
           </div>
 
-          <div className="profile-section">
+          <div className="card-container">
             <h3>About Me</h3>
             <textarea
               placeholder="Write about yourself..."
@@ -112,7 +118,7 @@ export default function MyProfileContainer() {
             />
           </div>
 
-          <div className="profile-section">
+          <div className="card-container">
             <h3>Profile Header</h3>
             <input
               type="text"
@@ -125,7 +131,7 @@ export default function MyProfileContainer() {
         </div>
 
         <div className="profile-right">
-          <div className="profile-section">
+          <div className="card-container">
             <h3>Why do I coach?</h3>
             <textarea
               placeholder="Write why do you coach..."

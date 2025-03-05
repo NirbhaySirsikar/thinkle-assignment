@@ -18,12 +18,28 @@ const Profile = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  let title = "Edit User Profile";
+  let description = "Manage your profile here";
+  if(tab === "experience") {
+    title = "Experience";
+    description = "Add your experience here";
+  } else if(tab === "bookings") {
+    title = "Bookings";
+    description = "Track your payments here";
+  } else if(tab === "account") {
+    title = "Account";
+    description = "Manage your account here";
+  } else {
+    title = "Edit your profile";
+    description = "Manage your profile here";
+  }
+
   return (
     <div className="profile-container">
       <div className="profile-header">
         <div className="profile-title">
-          <h1>Edit User Profile</h1>
-          <p>Track your payments here</p>
+          <h1>{title}</h1>
+          <p>{description}</p>
         </div>
       </div>
 

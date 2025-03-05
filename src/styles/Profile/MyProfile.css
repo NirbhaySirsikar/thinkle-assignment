@@ -76,10 +76,18 @@
   margin-bottom: 24px;
 }
 
-.profile-section h3 {
+.card-container h3 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 16px;
+}
+
+.profile-left>div{
+  margin-top: 1rem;
+}
+
+.profile-right>div{
+  margin-top: 1rem;
 }
 
 .text-input {
@@ -186,17 +194,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-top: 16px;
+  margin-top: 16px;
 }
 
 .tag {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: #e5deff;
-  color: #7E69AB;
+  background-color:#0B66D233;
+  color: #0B66D2;
   padding: 6px 12px;
-  border-radius: 100px;
+  border-radius: 6px;
   font-size: 13px;
 }
 
@@ -205,14 +214,17 @@
   align-items: center;
   justify-content: center;
   background: none;
+  color: #0B66D2;
   border: none;
   cursor: pointer;
-  color: #7E69AB;
   padding: 0;
 }
 
 .add-tag-container {
+  margin-top: 16px;
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   justify-content: center;
 }
 
