@@ -25,3 +25,8 @@
 .button-secondary:hover {
   background-color: #e6e6e6;
 }
+
+.button-destructive {
+  background-color: #fddada;
+  color: #f00;
+}

@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../styles/Modal.css';
-import Button from './Button';
 
 const Modal = ({ isOpen, onClose, title, children }) => {
+  const modalRef = useRef(null);
+
   useEffect(() => {
     // Disable body scroll when modal is open
     if (isOpen) {
@@ -10,12 +11,28 @@ const Modal = ({ isOpen, onClose, title, children }) => {
     } else {
       document.body.style.overflow = 'auto';
     }
-
+    
     // Clean up when component unmounts
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -25,7 +42,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={handleContentClick}>
+      <div className="modal-content" onClick={handleContentClick} ref={modalRef}>
         <div className="modal-header">
           <h2>{title}</h2>
           <button className="modal-close" onClick={onClose}>
