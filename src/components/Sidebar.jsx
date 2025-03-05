@@ -51,7 +51,9 @@ const Sidebar = () => {
               <path d="M3 18H21" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <Button onClick={openModal}>Add Bank Details</Button>
+          {location.pathname === '/' && 
+            <Button onClick={openModal}>Add Bank Details</Button>
+          }
         </div>
       )}
 
@@ -61,7 +63,7 @@ const Sidebar = () => {
 
       <aside className={`sidebar ${collapsed ? 'collapsed' : ''} ${isMobile ? 'mobile' : ''} ${mobileMenuOpen ? 'open' : ''}`}>
         {isMobile && (
-          <div className="mobile-header">
+          <div className="mobile-sidebar-header">
             <div className="logo">thinkle.</div>
             <button className="close-btn" onClick={toggleMobileMenu}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

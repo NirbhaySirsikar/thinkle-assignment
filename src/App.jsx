@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import "./styles/global.css";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
@@ -26,6 +27,7 @@ const App = () => {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/Profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
