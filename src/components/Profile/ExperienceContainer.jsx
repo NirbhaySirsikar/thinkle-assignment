@@ -108,9 +108,7 @@ export default function ExperienceContainer() {
   return (
     <div className="experience-container">
       <div className="sync-row">
-        <Button
-          onClick={() => setIsLinkedInModalOpen(true)}
-        >
+        <Button onClick={() => setIsLinkedInModalOpen(true)}>
           Autofill with LinkedIn
           <svg
             width="16"
