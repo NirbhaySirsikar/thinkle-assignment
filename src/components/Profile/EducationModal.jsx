@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
 import Button from "../Button";
 import { format } from "date-fns";
-import { Calendar, Trash2 } from "lucide-react";
 
 const EducationModal = ({ isOpen, onClose, onSave, onDelete, initialData }) => {
   const [university, setUniversity] = useState(initialData?.company || "");
@@ -181,8 +180,7 @@ const EducationModal = ({ isOpen, onClose, onSave, onDelete, initialData }) => {
           <div className="">
             <input
               type="checkbox"
-              id="present-checkbox"
-              className=""
+              className="present-checkbox"
               checked={isPresent}
               onChange={(e) => setIsPresent(e.target.checked)}
             />
@@ -192,7 +190,7 @@ const EducationModal = ({ isOpen, onClose, onSave, onDelete, initialData }) => {
           </div>
         </div>
 
-        <div className="">
+        <div className="modal-actions-group">
           {initialData && (
             <Button type="destructive" className="" onClick={handleDelete}>
               Delete
