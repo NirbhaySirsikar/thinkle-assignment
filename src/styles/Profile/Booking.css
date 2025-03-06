@@ -1,0 +1,215 @@
+.bookings-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.bookings-left>div{
+  margin-top: 1rem;
+}
+
+.bookings-right>div{
+  margin-top: 1rem;
+}
+
+.bookings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookings-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.bookings-description {
+  color: #6e6e73;
+  font-size: 14px;
+  margin-right: 64px;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  background-color: #e6e6e6;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-switch.active {
+  background-color: #000;
+}
+
+.toggle-switch-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle-switch.active .toggle-switch-slider {
+  transform: translateX(24px);
+}
+
+.session-packages {
+  display: flex;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.session-package {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #f0f0f0;
+  border-radius: 8px;
+  width: 8rem;
+  height: 10rem;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.session-package h4 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.session-package span {
+  font-size: 14px;
+  color: #6e6e73;
+}
+
+.price-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.price-input span {
+  font-size: 14px;
+  color: #6e6e73;
+}
+
+.price-input input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  outline: none;
+  text-align: right;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-top: auto;
+}
+
+.discount-section {
+  margin-top: 20px;
+}
+
+.discount-section h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.discount-input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  outline: none;
+}
+
+.discount-input:focus {
+  border-color: #9b87f5;
+  background-color: #fff;
+}
+
+.save-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .bookings-content {
+    grid-template-columns: 1fr;
+  }
+  .session-packages {
+    flex-direction: column;
+  }
+  
+  .session-package {
+    width: 100%;
+  }
+}
+.price-edit-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.price-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price-edit-form label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1d1d1f;
+}
+
+.price-input-container {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f7;
+  border-radius: 8px;
+  padding: 0 16px;
+  height: 50px;
+}
+
+.rupee-symbol {
+  font-size: 18px;
+  color: #6e6e73;
+  margin-right: 8px;
+}
+
+.price-modal-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+  height: 100%;
+}
+
+.price-hint {
+  font-size: 14px;
+  color: #6e6e73;
+}
+
+.price-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
