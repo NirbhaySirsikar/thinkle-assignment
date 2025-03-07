@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { Instagram, Linkedin, Twitter, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import "../styles/Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isForgotPassword) {
       console.log("Reset password for:", email);
-      // Here you would typically call an API to send a password reset email
     } else {
       console.log("Login with:", email, password);
-      // Here you would typically call an API to authenticate the user
+      navigate('/')
     }
   };
 
