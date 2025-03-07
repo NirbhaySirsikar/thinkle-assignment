@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../../styles/Profile/Account.css";
 import Button from "../Button";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, AlertCircle } from "lucide-react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { isPossiblePhoneNumber } from 'react-phone-number-input';
 
 const AccountContainer = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,10 @@ const AccountContainer = () => {
     dateOfBirth: "",
     sex: "",
     city: "",
+  });
+
+  const [errors, setErrors] = useState({
+    phone: ""
   });
 
   const [socialLinks, setSocialLinks] = useState({
@@ -52,7 +57,48 @@ const AccountContainer = () => {
     fileInputRef.current.click();
   };
 
+  const validatePhoneNumber = (phone) => {
+    if (!phone) {
+      return "Phone number is required";
+    }
+    if (!isPossiblePhoneNumber(phone)) {
+      return "Please enter a valid phone number";
+    }
+    return "";
+  };
+
+  const handlePhoneChange = (value) => {
+    setFormData({
+      ...formData,
+      phone: value,
+    });
+    
+    if (value) {
+      const phoneError = validatePhoneNumber(value);
+      setErrors({
+        ...errors,
+        phone: phoneError
+      });
+    } else {
+      setErrors({
+        ...errors,
+        phone: ""
+      });
+    }
+  };
+
   const handleSavePersonalInfo = () => {
+    // Validate phone before saving
+    const phoneError = validatePhoneNumber(formData.phone);
+    
+    if (phoneError) {
+      setErrors({
+        ...errors,
+        phone: phoneError
+      });
+      return;
+    }
+    
     console.log("Saving personal info:", formData);
     // Here you would make an API call to save the data
   };
@@ -62,15 +108,10 @@ const AccountContainer = () => {
     // Here you would make an API call to save the data
   };
 
-  const handlePhoneChange = (value) => {
-    setFormData({
-      ...formData,
-      phone: value,
-    });
-  };
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   return (
     <div className="account-content">
       <div className="account-left">
@@ -118,6 +159,12 @@ const AccountContainer = () => {
                 onChange={handlePhoneChange}
                 className="custom-phone-input"
               />
+              {errors.phone && (
+                <div className="error-message">
+                  <AlertCircle size={16} />
+                  <span>{errors.phone}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -141,6 +188,7 @@ const AccountContainer = () => {
                 value={formData.sex}
                 onChange={handleInputChange}
               >
+                <option value="">Select</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
@@ -166,6 +214,7 @@ const AccountContainer = () => {
           </div>
         </div>
       </div>
+
 
       <div className="account-right">
         <div className="card-container">

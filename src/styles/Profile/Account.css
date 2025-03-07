@@ -114,6 +114,15 @@
   padding: 0 4px;
 }
 
+.error-message {
+  color: #e11d48;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .PhoneInput {
   display: flex;
   align-items: center;
