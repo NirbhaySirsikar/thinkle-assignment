@@ -264,12 +264,26 @@
   
   .login-title {
     font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .login-header {
+    margin-bottom: 0.5rem;
   }
 
   .footer-links {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 0px;
+  }
+
+  .social-icons {
+    margin-bottom: 1rem;
+  }
+
+  .submit-button {
+    margin-bottom: 1rem;
   }
 
   .separator {
