@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../../styles/Profile/MyProfile.css";
 import profileBanner from "../../assets/images/profile-banner.webp";
 import femaleAvatar from "../../assets/images/female-avatar.png";
+import { Check, X } from "lucide-react";
+
 export default function MyProfileContainer() {
   const [aboutMe, setAboutMe] = useState("");
   const [profileHeader, setProfileHeader] = useState("");
@@ -11,6 +13,8 @@ export default function MyProfileContainer() {
   const [questions, setQuestions] = useState([]);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [profileImage, setProfileImage] = useState(femaleAvatar);
+  const fileInputRef = useRef(null);
 
   const addTag = (collection, setCollection, text) => {
     if (text.trim()) {
@@ -34,6 +38,25 @@ export default function MyProfileContainer() {
       setShowError(true);
       setTimeout(() => setShowError(false), 3000);
     }
+  };
+
+  const handleChangePicture = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setProfileImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemovePicture = () => {
+    setProfileImage(femaleAvatar);
   };
 
   const TagSection = ({ title, tags, onAddTag, onRemoveTag, placeholder }) => {
@@ -64,13 +87,12 @@ export default function MyProfileContainer() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-x"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-x"
                   >
-                    {" "}
-                    <path d="M18 6 6 18" /> <path d="m6 6 12 12" />{" "}
+                    <path d="M18 6 6 18" /> <path d="m6 6 12 12" />
                   </svg>
                 </button>
               </div>
@@ -92,6 +114,7 @@ export default function MyProfileContainer() {
       </div>
     );
   };
+
   return (
     <>
       <div className="profile-content">
@@ -106,7 +129,7 @@ export default function MyProfileContainer() {
             </div>
             <div className="user-avatar">
               <img
-                src={femaleAvatar}
+                src={profileImage}
                 alt="profile avatar"
                 className="banner-img"
               />
@@ -115,8 +138,15 @@ export default function MyProfileContainer() {
               <h2>Dipankar Datta</h2>
               <p>This will be displayed on your profile</p>
               <div className="user-actions">
-                <button className="action-btn">Change picture</button>
-                <button className="action-btn secondary">Remove</button>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                />
+                <button className="action-btn" onClick={handleChangePicture}>Change picture</button>
+                <button className="action-btn secondary" onClick={handleRemovePicture}>Remove</button>
               </div>
             </div>
           </div>
@@ -145,7 +175,7 @@ export default function MyProfileContainer() {
         </div>
 
         <div className="profile-right">
-          <div className="card-container">
+          <div className="profile-section">
             <h3>Why do I coach?</h3>
             <textarea
               placeholder="Write why do you coach..."

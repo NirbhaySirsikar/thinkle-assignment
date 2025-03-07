@@ -42,6 +42,17 @@
   border-radius: 8px;
   font-size: 14px;
   background-color: #f9f9f9;
+  appearance: none; /* Remove default browser styling */
+  -webkit-appearance: none; /* For iOS */
+  -moz-appearance: none;
+  color: #333; /* Ensure text is visible */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #9b87f5;
+  background-color: #fff;
 }
 
 .form-group input:focus,
