@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
+import LoginCarousel from "../components/Login/LoginCarousel";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +26,9 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="login-background"></div>
+      <div className="login-background">
+        <LoginCarousel />
+      </div>
 
       <div className="login-content">
         <div className="login-form-container">
