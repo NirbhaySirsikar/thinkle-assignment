@@ -1,0 +1,171 @@
+.container {
+  max-width: 1200px;
+  padding: 32px;
+  margin: 0 auto;
+}
+
+.content-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.form-section {
+  margin-bottom: 24px;
+}
+
+.form-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-col {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.form-input,.form-select,.form-textarea,.dropzone {
+    background-color: #f5f7f9 ;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+  min-height: 120px;
+  resize: vertical;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+}
+
+.radio-input {
+  margin-right: 8px;
+}
+
+.radio-input:checked {
+  accent-color:black;
+}
+
+.dropzone {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropzone:hover {
+  background-color: #f9f9f9;
+}
+
+.dropzone-icon {
+  display: block;
+  margin: 0 auto 12px;
+  width: 48px;
+  height: 48px;
+  color: #999;
+}
+
+.dropzone-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.dropzone-hint {
+  font-size: 12px;
+  color: #999;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.button {
+  padding: 10px 32px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.button-primary {
+  background-color: #000;
+  color: #fff;
+}
+
+.button-primary:hover {
+  background-color: #333;
+}
+
+.button-danger {
+  background-color:#F3454633;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
+}
+
+.button-danger:hover {
+  background-color: #fff1f0;
+}
