@@ -41,9 +41,6 @@ export default function ExperienceContainer() {
   const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false);
   const [currentExperienceItem, setCurrentExperienceItem] = useState(null);
 
-  // LinkedIn Sync Modal state
-  const [isLinkedInModalOpen, setIsLinkedInModalOpen] = useState(false);
-
   const handleAddEducation = () => {
     setCurrentEducationItem(null);
     setIsEducationModalOpen(true);
@@ -100,31 +97,8 @@ export default function ExperienceContainer() {
     setExperienceItems(experienceItems.filter((item) => item.id !== id));
   };
 
-  const handleLinkedInSync = (linkedInUrl) => {
-    console.log("LinkedIn URL to sync:", linkedInUrl);
-    // Here you would typically make an API call to process the LinkedIn data
-  };
-
   return (
     <div className="experience-container">
-      <div className="sync-row">
-        <Button onClick={() => setIsLinkedInModalOpen(true)}>
-          Autofill with LinkedIn
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </Button>
-      </div>
-
       <div className="experience-content">
         <div className="card-container">
           <h3>Education</h3>
@@ -231,12 +205,6 @@ export default function ExperienceContainer() {
         initialData={currentExperienceItem}
       />
 
-      {/* LinkedIn Sync Modal */}
-      <LinkedInSyncModal
-        isOpen={isLinkedInModalOpen}
-        onClose={() => setIsLinkedInModalOpen(false)}
-        onSync={handleLinkedInSync}
-      />
     </div>
   );
 }

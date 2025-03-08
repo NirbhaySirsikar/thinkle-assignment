@@ -59,7 +59,7 @@ padding: 0px !important;
   margin-top: 1rem;
 }
 
-.save-button {
+.tab-row-button {
   background-color: #000;
   color: #fff;
   padding: 0.75rem 1rem;
@@ -67,9 +67,13 @@ padding: 0px !important;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
 }
 
-.save-button:disabled {
+.tab-row-button:disabled {
   background-color: rgb(212 212 212);
   color: rgb(115 115 115);
   cursor: not-allowed;
