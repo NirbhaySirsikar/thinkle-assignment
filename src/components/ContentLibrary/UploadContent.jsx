@@ -412,7 +412,7 @@ const UploadContent = () => {
 
       {/* 5) Content Status + Buttons */}
       <div className="bottom-section">
-        <div className="form-section">
+        <div className="form-section" style={{marginBottom:0}}>
           <label className="form-label">Mark the content</label>
           <div className="radio-group">
             <div className="radio-item">

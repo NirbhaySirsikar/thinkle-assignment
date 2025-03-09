@@ -35,7 +35,6 @@
 
 .form-row div:first-of-type {
   min-width: 50%;
-  padding-right: 12px;
 }
 
 @media not all and (min-width: 768px) {
@@ -121,7 +120,8 @@
 .dropzone {
   border: 1px solid #ddd;
   border-radius: 12px;
-  padding: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -170,7 +170,17 @@
 .bottom-section {
   display: flex;
   justify-content: space-between;
-  margin-bottom: -2.5rem;
+}
+
+@media not all and (min-width: 768px) {
+  .bottom-section {
+    flex-direction: column;
+  }
+}
+@media not all and (min-width: 640px) {
+  .button-primary {
+    width: 100%;
+  }
 }
 
 /* Wrapper to position the chevron icon on the right */
@@ -200,7 +210,7 @@
 /* If you want the same style as your "form-select" fields, 
    you can unify them here: */
 .form-select {
-  background-color: #f9f9f9;
+  background-color: #f5f7f9;
   border: 1px solid #e6e6e6;
   border-radius: 8px;
   font-size: 14px;
@@ -225,7 +235,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #f9f9f9;
+  background-color: #f5f7f9;
   border: 1px solid #e6e6e6;
   border-radius: 8px;
   padding: 8px 16px;
