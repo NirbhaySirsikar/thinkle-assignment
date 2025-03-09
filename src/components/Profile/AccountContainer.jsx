@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../../styles/Profile/Account.css";
 import Button from "../Button";
-import { Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, AlertCircle, ChevronDown } from "lucide-react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { isPossiblePhoneNumber } from 'react-phone-number-input';
+import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 const AccountContainer = () => {
+  const cityOptions =["Delhi", "Mumbai", "Kolkata","Chennai"];
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,7 +18,7 @@ const AccountContainer = () => {
   });
 
   const [errors, setErrors] = useState({
-    phone: ""
+    phone: "",
   });
 
   const [socialLinks, setSocialLinks] = useState({
@@ -72,17 +73,17 @@ const AccountContainer = () => {
       ...formData,
       phone: value,
     });
-    
+
     if (value) {
       const phoneError = validatePhoneNumber(value);
       setErrors({
         ...errors,
-        phone: phoneError
+        phone: phoneError,
       });
     } else {
       setErrors({
         ...errors,
-        phone: ""
+        phone: "",
       });
     }
   };
@@ -90,15 +91,15 @@ const AccountContainer = () => {
   const handleSavePersonalInfo = () => {
     // Validate phone before saving
     const phoneError = validatePhoneNumber(formData.phone);
-    
+
     if (phoneError) {
       setErrors({
         ...errors,
-        phone: phoneError
+        phone: phoneError,
       });
       return;
     }
-    
+
     console.log("Saving personal info:", formData);
     // Here you would make an API call to save the data
   };
@@ -183,28 +184,40 @@ const AccountContainer = () => {
 
             <div className="form-group sex-group">
               <label>Sex</label>
-              <select
-                name="sex"
-                value={formData.sex}
-                onChange={handleInputChange}
-              >
-                <option value="">Select</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
+              <div className="select-wrapper">
+                <select
+                  name="sex"
+                  value={formData.sex}
+                  onChange={handleInputChange}
+                >
+                  <option value="">Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <ChevronDown className="select-icon" size={16} />
+              </div>
             </div>
           </div>
 
           <div className="form-group">
             <label>City</label>
-            <input
-              type="text"
-              name="city"
-              placeholder="Delhi"
-              value={formData.city}
-              onChange={handleInputChange}
-            />
+            <div className="select-wrapper">
+              <select
+                name="city"
+                value={formData.city}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select City</option>
+                {cityOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="select-icon" size={16} />
+            </div>
           </div>
 
           <div className="save-button-container">
@@ -214,7 +227,6 @@ const AccountContainer = () => {
           </div>
         </div>
       </div>
-
 
       <div className="account-right">
         <div className="card-container">
