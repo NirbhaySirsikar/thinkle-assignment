@@ -4,6 +4,7 @@ import "../styles/Sidebar.css";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import BankDetailsForm from "../components/BankDetailsForm";
+import Logo from "../assets/images/thinkle-logo.webp";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -94,7 +95,7 @@ const Sidebar = () => {
       >
         {isMobile && (
           <div className="mobile-sidebar-header">
-            <div className="logo">thinkle.</div>
+            <img src={Logo} alt="logo" />
             <button className="close-btn" onClick={toggleMobileMenu}>
               <svg
                 width="24"
@@ -125,7 +126,7 @@ const Sidebar = () => {
         {!isMobile && (
           <div className="logo-container">
             <a href="/" className={`logo ${collapsed ? "collapsed" : ""}`}>
-              thinkle.
+              <img src={Logo} alt="logo" />
             </a>
             <button className="collapse-btn" onClick={toggleSidebar}>
               <svg
@@ -389,12 +390,50 @@ const Sidebar = () => {
                 location.pathname === "/content-library" ? "active" : ""
               }`}
             >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" > 
-                <g clip-path="url(#clip0_1_63)"> <mask id="mask0_1_63" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20" >
-                  <path d="M9.99935 18.3327C14.6018 18.3327 18.3327 14.6018 18.3327 9.99935C18.3327 5.39685 14.6018 1.66602 9.99935 1.66602C5.39685 1.66602 1.66602 5.39685 1.66602 9.99935C1.66602 14.6018 5.39685 18.3327 9.99935 18.3327Z" fill="white" stroke="white" stroke-width="2" stroke-linejoin="round" /> <path d="M8.33203 9.99995V7.11328L10.832 8.55661L13.332 9.99995L10.832 11.4433L8.33203 12.8866V9.99995Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round" /> </mask>
-                  <g mask="url(#mask0_1_63)"> <path d="M0 0H20V20H0V0Z" fill="white" /> </g>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_1_63)">
+                  {" "}
+                  <mask
+                    id="mask0_1_63"
+                    maskUnits="userSpaceOnUse"
+                    x="0"
+                    y="0"
+                    width="20"
+                    height="20"
+                  >
+                    <path
+                      d="M9.99935 18.3327C14.6018 18.3327 18.3327 14.6018 18.3327 9.99935C18.3327 5.39685 14.6018 1.66602 9.99935 1.66602C5.39685 1.66602 1.66602 5.39685 1.66602 9.99935C1.66602 14.6018 5.39685 18.3327 9.99935 18.3327Z"
+                      fill="white"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />{" "}
+                    <path
+                      d="M8.33203 9.99995V7.11328L10.832 8.55661L13.332 9.99995L10.832 11.4433L8.33203 12.8866V9.99995Z"
+                      fill="black"
+                      stroke="black"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />{" "}
+                  </mask>
+                  <g mask="url(#mask0_1_63)">
+                    {" "}
+                    <path d="M0 0H20V20H0V0Z" fill="white" />{" "}
+                  </g>
                 </g>
-                <defs> <clipPath id="clip0_1_63"> <rect width="20" height="20" fill="white" /> </clipPath> </defs>
+                <defs>
+                  {" "}
+                  <clipPath id="clip0_1_63">
+                    {" "}
+                    <rect width="20" height="20" fill="white" />{" "}
+                  </clipPath>{" "}
+                </defs>
               </svg>
               {!collapsed && "Content Library"}
               {!collapsed && <div className="active-icon"></div>}
