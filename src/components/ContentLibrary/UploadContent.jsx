@@ -3,6 +3,7 @@ import "../../styles/ContentLibrary/UploadContent.css";
 import { ChevronDown } from "lucide-react";
 import Modal from "../Modal";
 import Button from "../Button";
+import CreatorDropdown from "./CreatorDropdown";
 
 const UploadContent = () => {
   const [contentType, setContentType] = useState("video");
@@ -139,26 +140,14 @@ const UploadContent = () => {
           </div>
 
           {/* Creator ID (dropdown) */}
-          <div className="form-col">
+<div className="form-col">
             <label htmlFor="creator-id" className="form-label">
               Creator ID*
             </label>
-            <div className="select-wrapper">
-              <select
-                id="creator-id"
-                value={creatorId}
-                onChange={(e) => setCreatorId(e.target.value)}
-                className="form-select"
-              >
-                <option value="" disabled>
-                  @johndoe
-                </option>
-                <option value="john">@johndoe</option>
-                <option value="jane">@janedoe</option>
-                <option value="sam">@samsmith</option>
-              </select>
-              <ChevronDown className="select-icon" size={16} />
-            </div>
+            <CreatorDropdown
+              value={creatorId}
+              onChange={(newId) => setCreatorId(newId)}
+            />
           </div>
 
           {/* Content ID */}
