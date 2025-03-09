@@ -17,28 +17,54 @@ const BookingsContainer = () => {
     secondSession: "",
     fourthSession: "",
   });
+
+  // State for the "Set Price" modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentEditField, setCurrentEditField] = useState("");
   const [tempPrice, setTempPrice] = useState("");
 
+  // State for the "Are you sure?" confirmation modal
+  const [showOfflineConfirmation, setShowOfflineConfirmation] = useState(false);
+
+  // Toggle free session
   const handleToggleFreeSession = () => {
     setOfferFreeSession(!offerFreeSession);
   };
 
+  // Toggle coach offline
   const handleToggleCoachOffline = () => {
-    setCoachOffline(!coachOffline);
+    // If coach is currently online and user is trying to go offline,
+    // show confirmation. If coach is already offline, just toggle off.
+    if (!coachOffline) {
+      setShowOfflineConfirmation(true);
+    } else {
+      setCoachOffline(false);
+    }
   };
 
-  const handleSessionPriceChange = (field, value) => {
-    setSessionPrices({
-      ...sessionPrices,
+  // If user confirms "Yes, I am sure"
+  const handleConfirmOffline = () => {
+    setCoachOffline(true);
+    setShowOfflineConfirmation(false);
+  };
+
+  // If user cancels
+  const handleCancelOffline = () => {
+    setShowOfflineConfirmation(false);
+  };
+
+  // Handle discount changes
+  const handleDiscountChange = (field, value) => {
+    setDiscounts({
+      ...discounts,
       [field]: value,
     });
   };
 
-  const handleDiscountChange = (field, value) => {
-    setDiscounts({
-      ...discounts,
+  // Handle session price changes
+  const handleSessionPriceChange = (field, value) => {
+    setSessionPrices({
+      ...sessionPrices,
       [field]: value,
     });
   };
@@ -47,20 +73,23 @@ const BookingsContainer = () => {
     console.log("Saving changes...");
     console.log("Session Prices:", sessionPrices);
     console.log("Discounts:", discounts);
-    // Here you would implement the API call to save the changes
+    // API call to save changes, if needed
   };
 
+  // Open the "Set Price" modal
   const openEditModal = (field) => {
     setCurrentEditField(field);
     setTempPrice(sessionPrices[field]);
     setIsModalOpen(true);
   };
 
+  // Close the "Set Price" modal
   const closeModal = () => {
     setIsModalOpen(false);
     setTempPrice("");
   };
 
+  // Save the price from the "Set Price" modal
   const savePrice = () => {
     handleSessionPriceChange(currentEditField, tempPrice);
     closeModal();
@@ -68,6 +97,7 @@ const BookingsContainer = () => {
 
   return (
     <div className="bookings-content">
+      {/* Left side */}
       <div className="bookings-left">
         <div className="card-container">
           <div className="bookings-header">
@@ -148,6 +178,8 @@ const BookingsContainer = () => {
           </div>
         </div>
       </div>
+
+      {/* Right side */}
       <div className="bookings-right">
         <div className="card-container large">
           <h3>Create Session Packages</h3>
@@ -200,6 +232,9 @@ const BookingsContainer = () => {
         </div>
       </div>
 
+      {/* ==============================
+          1) "Set Price" Modal
+         ============================== */}
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -225,6 +260,28 @@ const BookingsContainer = () => {
               Save Changes
             </Button>
           </div>
+        </div>
+      </Modal>
+
+      {/* ==============================
+          2) "Coach Offline" Confirmation Modal
+         ============================== */}
+      <Modal
+        isOpen={showOfflineConfirmation}
+        onClose={handleCancelOffline}  
+        title="Are you sure?"                       
+      >
+          <p className="confirmation-text">
+            Your profile will not be shown in the thinkle database as you made yourself offline.
+          </p>
+
+        <div className="modal-actions-group">
+          <Button type="destructive" onClick={handleCancelOffline}>
+            Cancel
+          </Button>
+            <Button type="primary" onClick={handleConfirmOffline}>
+              Yes, I am sure
+            </Button>
         </div>
       </Modal>
     </div>
