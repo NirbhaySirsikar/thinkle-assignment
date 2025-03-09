@@ -107,7 +107,6 @@ const UploadContent = () => {
       {/* Video Information */}
       <div className="form-section">
         <h2 className="form-section-title">Video Information</h2>
-
         <div className="form-row">
           <div className="form-col">
             <label htmlFor="video-title" className="form-label">
