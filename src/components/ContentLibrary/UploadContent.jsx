@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../../styles/ContentLibrary/UploadContent.css";
 import { ChevronDown } from "lucide-react";
+import Modal from "../Modal";
+import Button from "../Button";
 
 const UploadContent = () => {
   const [contentType, setContentType] = useState("video");
@@ -14,6 +16,8 @@ const UploadContent = () => {
   const [video, setVideo] = useState(null);
   const [description, setDescription] = useState("");
   const [contentStatus, setContentStatus] = useState("complete");
+
+  const [showClearConfirmation, setShowClearConfirmation] = useState(false);
 
   const getContentType = ()=>{
     return contentType.charAt(0).toUpperCase() + contentType.slice(1);
@@ -50,6 +54,10 @@ const UploadContent = () => {
   };
 
   const handleClear = () => {
+    setShowClearConfirmation(true);
+  };
+
+  const handleConfirmClear = () => {
     setVideoTitle("");
     setCreatorId("");
     setContentId("");
@@ -60,9 +68,12 @@ const UploadContent = () => {
     setVideo(null);
     setDescription("");
     setContentStatus("complete");
-    alert("All fields have been cleared.");
+    setShowClearConfirmation(false);
   };
 
+  const handleCancelClear = () => {
+    setShowClearConfirmation(false);
+  };
   return (
     <div className="card-container" style={{ marginTop: "2.5rem" }}>
       {/* 1) Content Type Radios */}
@@ -451,6 +462,24 @@ const UploadContent = () => {
           </button>
         </div>
       </div>
+      <Modal
+        isOpen={showClearConfirmation}
+        onClose={handleCancelClear}  
+        title="Are you sure?"                       
+      >
+          <p className="confirmation-text">
+Are you sure you want to Clear this content? Your progress will not be saved
+          </p>
+
+        <div className="modal-actions-group">
+          <Button type="destructive" onClick={handleCancelClear}>
+            No
+          </Button>
+            <Button type="primary" onClick={handleConfirmClear}>
+              Yes
+            </Button>
+        </div>
+      </Modal>
     </div>
   );
 };

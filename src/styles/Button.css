@@ -1,5 +1,6 @@
 .button {
   padding: 10px 16px;
+  min-width: 6rem !important;
   height: fit-content;
   border-radius: 10px;
   font-size: 14px;
