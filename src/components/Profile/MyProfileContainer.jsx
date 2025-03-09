@@ -69,7 +69,7 @@ export default function MyProfileContainer() {
     };
 
     return (
-      <div className="profile-section">
+      <div className="card-container">
         <h3>{title}</h3>
         {tags.length > 0 && (
           <div className="tags-container">
@@ -175,7 +175,7 @@ export default function MyProfileContainer() {
         </div>
 
         <div className="profile-right">
-          <div className="profile-section">
+          <div className="card-container">
             <h3>Why do I coach?</h3>
             <textarea
               placeholder="Write why do you coach..."
