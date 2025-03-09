@@ -211,7 +211,7 @@ const BookingsContainer = () => {
             <div className="price-input-container">
               <span className="rupee-symbol">₹</span>
               <input
-                type="text"
+                type="number"
                 value={tempPrice}
                 onChange={(e) => setTempPrice(e.target.value)}
                 placeholder="0"
