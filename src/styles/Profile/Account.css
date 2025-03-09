@@ -224,6 +224,11 @@
   overflow: hidden;
 }
 
+.social-input{
+  padding-left: 0px !important;
+  border-style: none !important;
+}
+
 .social-icon-wrapper {
   display: flex;
   align-items: center;
