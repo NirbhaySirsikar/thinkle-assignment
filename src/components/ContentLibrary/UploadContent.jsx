@@ -60,7 +60,7 @@ const UploadContent = () => {
   };
 
   return (
-    <div className="card-container">
+    <div className="card-container" style={{marginTop:"2.5rem"}}>
       <div className="form-section">
         {/* Content Type Selection */}
         <h2 className="form-section-title">Type of content*</h2>
