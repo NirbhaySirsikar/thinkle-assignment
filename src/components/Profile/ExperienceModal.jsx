@@ -269,11 +269,11 @@ const ExperienceModal = ({
             </div>
           </div>
 
-            {!isPresent && (
-          <div className="form-group">
-            <label>
-              End Date<span>*</span>
-            </label>
+          {!isPresent && (
+            <div className="form-group">
+              <label>
+                End Date<span>*</span>
+              </label>
               <div className="date-dropdowns">
                 <div className="select-wrapper">
                   <select
@@ -307,8 +307,8 @@ const ExperienceModal = ({
                   <ChevronDown className="select-icon" size={16} />
                 </div>
               </div>
-          </div>
-            )}
+            </div>
+          )}
 
           <div>
             <input
@@ -329,7 +329,7 @@ const ExperienceModal = ({
             </Button>
           )}
           <div>
-            <Button type="submit">
+            <Button type="primary">
               {initialData ? "Save Changes" : "Add Experience"}
             </Button>
           </div>

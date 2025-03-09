@@ -6,8 +6,18 @@ import { format } from "date-fns";
 
 // Same months array from ExperienceModal
 const months = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 // Same getYears function from ExperienceModal
@@ -58,8 +68,12 @@ const EducationModal = ({ isOpen, onClose, onSave, onDelete, initialData }) => {
   const initialWebsite = initialData?.website || "";
 
   // Parse "MMM yyyy" strings into separate month/year
-  const initialStartMonth = initialData?.startDate ? parseMonth(initialData.startDate) : "";
-  const initialStartYear = initialData?.startDate ? parseYear(initialData.startDate) : "";
+  const initialStartMonth = initialData?.startDate
+    ? parseMonth(initialData.startDate)
+    : "";
+  const initialStartYear = initialData?.startDate
+    ? parseYear(initialData.startDate)
+    : "";
   const initialEndMonth =
     initialData?.endDate && initialData.endDate !== "Present"
       ? parseMonth(initialData.endDate)
@@ -80,7 +94,9 @@ const EducationModal = ({ isOpen, onClose, onSave, onDelete, initialData }) => {
   const [endMonth, setEndMonth] = useState(initialEndMonth);
   const [endYear, setEndYear] = useState(initialEndYear);
 
-  const [isPresent, setIsPresent] = useState(initialData?.endDate === "Present");
+  const [isPresent, setIsPresent] = useState(
+    initialData?.endDate === "Present"
+  );
 
   // If "Present" is checked, clear out end month/year
   useEffect(() => {
@@ -94,7 +110,8 @@ const EducationModal = ({ isOpen, onClose, onSave, onDelete, initialData }) => {
     e.preventDefault();
 
     // Construct "MMM yyyy" or "Present"
-    const startDate = startMonth && startYear ? `${startMonth} ${startYear}` : "";
+    const startDate =
+      startMonth && startYear ? `${startMonth} ${startYear}` : "";
     const endDate = isPresent
       ? "Present"
       : endMonth && endYear
@@ -311,7 +328,7 @@ const EducationModal = ({ isOpen, onClose, onSave, onDelete, initialData }) => {
             </Button>
           )}
           <div>
-            <Button type="submit">
+            <Button type="primary">
               {initialData ? "Save Changes" : "Add Education"}
             </Button>
           </div>
