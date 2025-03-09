@@ -19,7 +19,7 @@
 .card-container h3 {
   font-size: 16px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .form-group {
@@ -168,7 +168,7 @@
 .save-button-container {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .hidden-file-input {
@@ -212,7 +212,6 @@
 .social-links-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
 .social-input-wrapper {
