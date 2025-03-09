@@ -3,11 +3,11 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
-.bookings-left>div{
+.bookings-left > div {
   margin-top: 1rem;
 }
 
-.bookings-right>div{
+.bookings-right > div {
   margin-top: 1rem;
 }
 
@@ -20,7 +20,7 @@
 .bookings-header h3 {
   font-size: 18px;
   font-weight: 600;
-  margin: 0;
+  margin-bottom: 0px !important;
 }
 
 .bookings-description {
@@ -157,7 +157,7 @@
   .session-packages {
     flex-direction: column;
   }
-  
+
   .session-package {
     width: 100%;
   }
