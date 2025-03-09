@@ -384,7 +384,7 @@ const UploadContent = () => {
         />
       </div>
 
-      {/* Content Status */}
+<div className="bottom-section">
       <div className="form-section">
         <label className="form-label">Mark the content</label>
         <div className="radio-group">
@@ -414,8 +414,6 @@ const UploadContent = () => {
           </div>
         </div>
       </div>
-
-      {/* Form Actions */}
       <div className="form-actions">
         <button className="button button-danger" onClick={handleClear}>
           Clear
@@ -423,6 +421,7 @@ const UploadContent = () => {
         <button className="button button-primary" onClick={handleSubmit}>
           Save
         </button>
+      </div>
       </div>
     </div>
   );

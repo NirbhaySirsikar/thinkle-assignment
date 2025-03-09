@@ -163,3 +163,9 @@
 .button-danger:hover {
   background-color: #fff1f0;
 }
+
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -2.5rem;
+}

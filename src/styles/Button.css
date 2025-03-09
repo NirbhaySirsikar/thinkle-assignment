@@ -1,5 +1,6 @@
 .button {
   padding: 10px 16px;
+  height: fit-content;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
