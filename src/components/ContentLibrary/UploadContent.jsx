@@ -20,9 +20,9 @@ const UploadContent = () => {
 
   const [showClearConfirmation, setShowClearConfirmation] = useState(false);
 
-  const getContentType = ()=>{
+  const getContentType = () => {
     return contentType.charAt(0).toUpperCase() + contentType.slice(1);
-  }
+  };
 
   const handleThumbnailDrop = (e) => {
     e.preventDefault();
@@ -140,7 +140,7 @@ const UploadContent = () => {
           </div>
 
           {/* Creator ID (dropdown) */}
-<div className="form-col">
+          <div className="form-col">
             <label htmlFor="creator-id" className="form-label">
               Creator ID*
             </label>
@@ -412,7 +412,7 @@ const UploadContent = () => {
 
       {/* 5) Content Status + Buttons */}
       <div className="bottom-section">
-        <div className="form-section" style={{marginBottom:0}}>
+        <div className="form-section" style={{ marginBottom: 0 }}>
           <label className="form-label">Mark the content</label>
           <div className="radio-group">
             <div className="radio-item">
@@ -453,20 +453,21 @@ const UploadContent = () => {
       </div>
       <Modal
         isOpen={showClearConfirmation}
-        onClose={handleCancelClear}  
-        title="Are you sure?"                       
+        onClose={handleCancelClear}
+        title="Are you sure?"
       >
-          <p className="confirmation-text">
-Are you sure you want to Clear this content? Your progress will not be saved
-          </p>
+        <p className="confirmation-text">
+          Are you sure you want to Clear this content? Your progress will not be
+          saved
+        </p>
 
         <div className="modal-actions-group">
           <Button type="destructive" onClick={handleCancelClear}>
             No
           </Button>
-            <Button type="primary" onClick={handleConfirmClear}>
-              Yes
-            </Button>
+          <Button type="primary" onClick={handleConfirmClear}>
+            Yes
+          </Button>
         </div>
       </Modal>
     </div>
