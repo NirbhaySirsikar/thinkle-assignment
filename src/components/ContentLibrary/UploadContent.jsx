@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Image, Upload } from "lucide-react";
 import "../../styles/ContentLibrary/UploadContent.css";
+import { ChevronDown } from "lucide-react";
 
 const UploadContent = () => {
   const [contentType, setContentType] = useState("video");
@@ -60,9 +60,9 @@ const UploadContent = () => {
   };
 
   return (
-    <div className="card-container" style={{marginTop:"2.5rem"}}>
+    <div className="card-container" style={{ marginTop: "2.5rem" }}>
+      {/* 1) Content Type Radios */}
       <div className="form-section">
-        {/* Content Type Selection */}
         <h2 className="form-section-title">Type of content*</h2>
         <div className="radio-group">
           <div className="radio-item">
@@ -104,10 +104,12 @@ const UploadContent = () => {
         </div>
       </div>
 
-      {/* Video Information */}
+      {/* 2) Video Information */}
       <div className="form-section">
         <h2 className="form-section-title">Video Information</h2>
+
         <div className="form-row">
+          {/* Video Title */}
           <div className="form-col">
             <label htmlFor="video-title" className="form-label">
               Video Title*
@@ -120,24 +122,31 @@ const UploadContent = () => {
               className="form-input"
             />
           </div>
+
+          {/* Creator ID (dropdown) */}
           <div className="form-col">
             <label htmlFor="creator-id" className="form-label">
               Creator ID*
             </label>
-            <select
-              id="creator-id"
-              value={creatorId}
-              onChange={(e) => setCreatorId(e.target.value)}
-              className="form-select"
-            >
-              <option value="" disabled>
-                @johndoe
-              </option>
-              <option value="john">@johndoe</option>
-              <option value="jane">@janedoe</option>
-              <option value="sam">@samsmith</option>
-            </select>
+            <div className="select-wrapper">
+              <select
+                id="creator-id"
+                value={creatorId}
+                onChange={(e) => setCreatorId(e.target.value)}
+                className="form-select"
+              >
+                <option value="" disabled>
+                  @johndoe
+                </option>
+                <option value="john">@johndoe</option>
+                <option value="jane">@janedoe</option>
+                <option value="sam">@samsmith</option>
+              </select>
+              <ChevronDown className="select-icon" size={16} />
+            </div>
           </div>
+
+          {/* Content ID */}
           <div className="form-col">
             <label htmlFor="content-id" className="form-label">
               Content ID*
@@ -153,69 +162,83 @@ const UploadContent = () => {
         </div>
 
         <div className="form-row">
+          {/* Category (dropdown) */}
           <div className="form-col">
             <label htmlFor="category" className="form-label">
               Select Category*
             </label>
-            <select
-              id="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="form-select"
-            >
-              <option value="" disabled>
-                Education, technology, etc
-              </option>
-              <option value="education">Education</option>
-              <option value="technology">Technology</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="business">Business</option>
-            </select>
+            <div className="select-wrapper">
+              <select
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="form-select"
+              >
+                <option value="" disabled>
+                  Education, technology, etc
+                </option>
+                <option value="education">Education</option>
+                <option value="technology">Technology</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="business">Business</option>
+              </select>
+              <ChevronDown className="select-icon" size={16} />
+            </div>
           </div>
+
+          {/* Type of Video (dropdown) */}
           <div className="form-col">
             <label htmlFor="video-type" className="form-label">
               Type of Video*
             </label>
-            <select
-              id="video-type"
-              value={videoType}
-              onChange={(e) => setVideoType(e.target.value)}
-              className="form-select"
-            >
-              <option value="" disabled>
-                Free, Plus
-              </option>
-              <option value="free">Free</option>
-              <option value="plus">Plus</option>
-              <option value="premium">Premium</option>
-            </select>
+            <div className="select-wrapper">
+              <select
+                id="video-type"
+                value={videoType}
+                onChange={(e) => setVideoType(e.target.value)}
+                className="form-select"
+              >
+                <option value="" disabled>
+                  Free, Plus
+                </option>
+                <option value="free">Free</option>
+                <option value="plus">Plus</option>
+                <option value="premium">Premium</option>
+              </select>
+              <ChevronDown className="select-icon" size={16} />
+            </div>
           </div>
+
+          {/* Section (dropdown) */}
           <div className="form-col">
             <label htmlFor="section" className="form-label">
               Section*
             </label>
-            <select
-              id="section"
-              value={section}
-              onChange={(e) => setSection(e.target.value)}
-              className="form-select"
-            >
-              <option value="" disabled>
-                Select Section
-              </option>
-              <option value="beginner">Beginner</option>
-              <option value="intermediate">Intermediate</option>
-              <option value="advanced">Advanced</option>
-            </select>
+            <div className="select-wrapper">
+              <select
+                id="section"
+                value={section}
+                onChange={(e) => setSection(e.target.value)}
+                className="form-select"
+              >
+                <option value="" disabled>
+                  Select Section
+                </option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+              <ChevronDown className="select-icon" size={16} />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Upload Content */}
+      {/* 3) Upload Content */}
       <div className="form-section">
         <h2 className="form-section-title">Upload Content</h2>
-
         <div className="form-row">
+          {/* Thumbnail */}
           <div className="form-col">
             <label className="form-label">Choose Thumbnail Image*</label>
             <div
@@ -303,6 +326,7 @@ const UploadContent = () => {
             </div>
           </div>
 
+          {/* Video */}
           <div className="form-col">
             <label className="form-label">Upload Video*</label>
             <div
@@ -370,7 +394,7 @@ const UploadContent = () => {
         </div>
       </div>
 
-      {/* Video Description */}
+      {/* 4) Video Description */}
       <div className="form-section">
         <label htmlFor="description" className="form-label">
           Add Video Description*
@@ -384,44 +408,46 @@ const UploadContent = () => {
         />
       </div>
 
-<div className="bottom-section">
-      <div className="form-section">
-        <label className="form-label">Mark the content</label>
-        <div className="radio-group">
-          <div className="radio-item">
-            <input
-              type="radio"
-              id="complete"
-              name="content-status"
-              value="complete"
-              checked={contentStatus === "complete"}
-              onChange={() => setContentStatus("complete")}
-              className="radio-input"
-            />
-            <label htmlFor="complete">Complete</label>
-          </div>
-          <div className="radio-item">
-            <input
-              type="radio"
-              id="incomplete"
-              name="content-status"
-              value="incomplete"
-              checked={contentStatus === "incomplete"}
-              onChange={() => setContentStatus("incomplete")}
-              className="radio-input"
-            />
-            <label htmlFor="incomplete">Incomplete</label>
+      {/* 5) Content Status + Buttons */}
+      <div className="bottom-section">
+        <div className="form-section">
+          <label className="form-label">Mark the content</label>
+          <div className="radio-group">
+            <div className="radio-item">
+              <input
+                type="radio"
+                id="complete"
+                name="content-status"
+                value="complete"
+                checked={contentStatus === "complete"}
+                onChange={() => setContentStatus("complete")}
+                className="radio-input"
+              />
+              <label htmlFor="complete">Complete</label>
+            </div>
+            <div className="radio-item">
+              <input
+                type="radio"
+                id="incomplete"
+                name="content-status"
+                value="incomplete"
+                checked={contentStatus === "incomplete"}
+                onChange={() => setContentStatus("incomplete")}
+                className="radio-input"
+              />
+              <label htmlFor="incomplete">Incomplete</label>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="form-actions">
-        <button className="button button-danger" onClick={handleClear}>
-          Clear
-        </button>
-        <button className="button button-primary" onClick={handleSubmit}>
-          Save
-        </button>
-      </div>
+
+        <div className="form-actions">
+          <button className="button button-danger" onClick={handleClear}>
+            Clear
+          </button>
+          <button className="button button-primary" onClick={handleSubmit}>
+            Save
+          </button>
+        </div>
       </div>
     </div>
   );

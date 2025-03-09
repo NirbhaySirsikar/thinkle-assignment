@@ -57,8 +57,11 @@
   color: #333;
 }
 
-.form-input,.form-select,.form-textarea,.dropzone {
-    background-color: #f5f7f9 ;
+.form-input,
+.form-select,
+.form-textarea,
+.dropzone {
+  background-color: #f5f7f9;
 }
 
 .form-input {
@@ -112,7 +115,7 @@
 }
 
 .radio-input:checked {
-  accent-color:black;
+  accent-color: black;
 }
 
 .dropzone {
@@ -155,7 +158,7 @@
 }
 
 .button-danger {
-  background-color:#F3454633;
+  background-color: #f3454633;
   color: #ff4d4f;
   border: 1px solid #ffccc7;
 }
@@ -168,4 +171,46 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: -2.5rem;
+}
+
+/* Wrapper to position the chevron icon on the right */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Hide the default browser arrow; give some padding on the right */
+.select-wrapper select {
+  appearance: none; /* removes default arrow in most browsers */
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari/Chrome */
+  padding-right: 2.5rem;
+}
+
+/* The chevron icon is absolutely placed on the right side */
+.select-wrapper .select-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* so clicks go through to the <select> */
+  color: #6e6e73; /* or match your brand color */
+}
+
+/* If you want the same style as your "form-select" fields, 
+   you can unify them here: */
+.form-select {
+  background-color: #f9f9f9;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s, background-color 0.2s;
+  width: 100%;
+  padding: 12px 16px; /* Make sure it doesn't clash with .select-wrapper padding */
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #9b87f5;
+  background-color: #fff;
 }
