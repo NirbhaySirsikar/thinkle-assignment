@@ -1,7 +1,47 @@
 import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
 import Button from "../Button";
+import { ChevronDown } from "lucide-react";
 import { format } from "date-fns";
+
+// Helper arrays for months/years
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+const getYears = () => {
+  const currentYear = new Date().getFullYear();
+  const years = [];
+  for (let y = currentYear; y >= 1960; y--) {
+    years.push(y.toString());
+  }
+  return years;
+};
+const years = getYears();
+
+// Functions to parse "MMM yyyy" strings into separate month/year
+const parseMonth = (dateString) => {
+  if (!dateString) return "";
+  const [m] = dateString.split(" ");
+  return months.includes(m) ? m : "";
+};
+const parseYear = (dateString) => {
+  if (!dateString) return "";
+  const parts = dateString.split(" ");
+  const y = parts[parts.length - 1];
+  return years.includes(y) ? y : "";
+};
 
 const ExperienceModal = ({
   isOpen,
@@ -10,43 +50,78 @@ const ExperienceModal = ({
   onDelete,
   initialData,
 }) => {
+  // Dropdowns for Role & Company
+  const roleOptions = [
+    "Software Engineer",
+    "Product Manager",
+    "Designer",
+    "Data Scientist",
+  ];
+  const companyOptions = ["Google", "Microsoft", "Amazon", "Facebook"];
+
+  // Parse initial month/year for start & end
+  const initialStartMonth = initialData?.startDate
+    ? parseMonth(initialData.startDate)
+    : "";
+  const initialStartYear = initialData?.startDate
+    ? parseYear(initialData.startDate)
+    : "";
+  const initialEndMonth =
+    initialData?.endDate && initialData.endDate !== "Present"
+      ? parseMonth(initialData.endDate)
+      : "";
+  const initialEndYear =
+    initialData?.endDate && initialData.endDate !== "Present"
+      ? parseYear(initialData.endDate)
+      : "";
+
   const [role, setRole] = useState(initialData?.title || "");
   const [company, setCompany] = useState(initialData?.company || "");
   const [website, setWebsite] = useState(initialData?.website || "");
   const [location, setLocation] = useState(initialData?.location || "");
-  const [startDate, setStartDate] = useState(initialData?.startDate || "");
-  const [endDate, setEndDate] = useState(initialData?.endDate || "");
+
+  // Start date (month/year)
+  const [startMonth, setStartMonth] = useState(initialStartMonth);
+  const [startYear, setStartYear] = useState(initialStartYear);
+
+  // End date (month/year)
+  const [endMonth, setEndMonth] = useState(initialEndMonth);
+  const [endYear, setEndYear] = useState(initialEndYear);
+
   const [isPresent, setIsPresent] = useState(
     initialData?.endDate === "Present"
   );
-  const [showStartCalendar, setShowStartCalendar] = useState(false);
-  const [showEndCalendar, setShowEndCalendar] = useState(false);
 
-  // Set current date as end date if isPresent
+  // If "Present" is checked, clear out endMonth/endYear
   useEffect(() => {
     if (isPresent) {
-      const currentDate = new Date();
-      const formattedDate = format(currentDate, "MMM yyyy");
-      setEndDate(formattedDate);
+      setEndMonth("");
+      setEndYear("");
     }
   }, [isPresent]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Construct final date strings
+    const startDate =
+      startMonth && startYear ? `${startMonth} ${startYear}` : "";
+    const endDate = isPresent
+      ? "Present"
+      : endMonth && endYear
+      ? `${endMonth} ${endYear}`
+      : "";
+
     const experienceData = {
       id: initialData?.id || Date.now().toString(),
       logo: "https://via.placeholder.com/48",
-      company: company,
+      company,
       title: role,
-      location: location,
-      website: website,
-      startDate: startDate,
-      endDate: isPresent ? "Present" : endDate,
-      duration: calculateDuration(
-        startDate,
-        isPresent ? new Date().toISOString().split("T")[0] : endDate
-      ),
+      location,
+      website,
+      startDate,
+      endDate,
+      duration: calculateDuration(startDate, endDate),
     };
 
     onSave(experienceData);
@@ -56,21 +131,20 @@ const ExperienceModal = ({
   const calculateDuration = (start, end) => {
     try {
       const startParts = start.split(" ");
-      const startYear = parseInt(startParts[startParts.length - 1]);
+      const startYear = parseInt(startParts[startParts.length - 1], 10);
 
-      let endYear;
+      let endYearVal;
       if (end === "Present") {
-        endYear = new Date().getFullYear();
+        endYearVal = new Date().getFullYear();
       } else {
         const endParts = end.split(" ");
-        endYear = parseInt(endParts[endParts.length - 1]);
+        endYearVal = parseInt(endParts[endParts.length - 1], 10);
       }
 
-      const years = endYear - startYear;
-
-      if (years === 0) return "< 1 year";
-      if (years === 1) return "1 year";
-      return `${years} years`;
+      const yearsDiff = endYearVal - startYear;
+      if (yearsDiff <= 0) return "< 1 year";
+      if (yearsDiff === 1) return "1 year";
+      return `${yearsDiff} years`;
     } catch (e) {
       return "";
     }
@@ -83,59 +157,61 @@ const ExperienceModal = ({
     }
   };
 
-  // Generate month options
-  const months = Array.from({ length: 12 }, (_, i) => {
-    const date = new Date(2000, i, 1);
-    return format(date, "MMM");
-  });
-
-  // Generate year options (from 1960 to current year)
-  const currentYear = new Date().getFullYear();
-  const years = Array.from(
-    { length: currentYear - 1960 + 1 },
-    (_, i) => currentYear - i
-  );
-
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
       title={initialData ? "Edit Experience" : "Add Experience"}
     >
-      <form onSubmit={handleSubmit} className="">
+      <form onSubmit={handleSubmit}>
+        {/* Role Dropdown */}
         <div className="form-group">
-          <label className="">
-            Role<span className="">*</span>
+          <label>
+            Role<span>*</span>
           </label>
-          <input
-            type="text"
-            className=""
-            placeholder="Add your role"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            required
-          />
+          <div className="select-wrapper">
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+            >
+              <option value="">Select Role</option>
+              {roleOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="select-icon" size={16} />
+          </div>
+        </div>
+
+        {/* Company Dropdown */}
+        <div className="form-group">
+          <label>
+            Company<span>*</span>
+          </label>
+          <div className="select-wrapper">
+            <select
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              required
+            >
+              <option value="">Select Company</option>
+              {companyOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="select-icon" size={16} />
+          </div>
         </div>
 
         <div className="form-group">
-          <label className="">
-            Company<span className="">*</span>
-          </label>
-          <input
-            type="text"
-            className=""
-            placeholder="Add Company name"
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="">Company Website</label>
+          <label>Company Website</label>
           <input
             type="url"
-            className=""
             placeholder="Add Company website"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
@@ -143,68 +219,116 @@ const ExperienceModal = ({
         </div>
 
         <div className="form-group">
-          <label className="">Location</label>
+          <label>Location</label>
           <input
             type="text"
-            className=""
             placeholder="Add Company location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
         </div>
 
+        {/* Start/End Date Dropdowns */}
         <div className="date-picker-group">
           <div className="form-group">
-            <label className="">
-              Start Date<span className="">*</span>
+            <label>
+              Start Date<span>*</span>
             </label>
-            <div className="date-picker-container">
-              <input
-                type="date"
-                className=""
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                required
-              />
+            <div className="date-dropdowns">
+              <div className="select-wrapper">
+                <select
+                  value={startMonth}
+                  onChange={(e) => setStartMonth(e.target.value)}
+                  required
+                >
+                  <option value="">Month</option>
+                  {months.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="select-icon" size={16} />
+              </div>
+
+              <div className="select-wrapper">
+                <select
+                  value={startYear}
+                  onChange={(e) => setStartYear(e.target.value)}
+                  required
+                >
+                  <option value="">Year</option>
+                  {years.map((y) => (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="select-icon" size={16} />
+              </div>
             </div>
           </div>
 
+            {!isPresent && (
           <div className="form-group">
-            <label className="">
-              End Date<span className="">*</span>
+            <label>
+              End Date<span>*</span>
             </label>
-            <div className="date-picker-container">
-              {!isPresent && (
-                <input
-                  type="date"
-                  className=""
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  required={!isPresent}
-                />
-              )}
-            </div>
+              <div className="date-dropdowns">
+                <div className="select-wrapper">
+                  <select
+                    value={endMonth}
+                    onChange={(e) => setEndMonth(e.target.value)}
+                    required
+                  >
+                    <option value="">Month</option>
+                    {months.map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="select-icon" size={16} />
+                </div>
+
+                <div className="select-wrapper">
+                  <select
+                    value={endYear}
+                    onChange={(e) => setEndYear(e.target.value)}
+                    required
+                  >
+                    <option value="">Year</option>
+                    {years.map((y) => (
+                      <option key={y} value={y}>
+                        {y}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="select-icon" size={16} />
+                </div>
+              </div>
           </div>
-          <div className="">
+            )}
+
+          <div>
             <input
               type="checkbox"
               className="present-checkbox"
               checked={isPresent}
               onChange={(e) => setIsPresent(e.target.checked)}
+              id="present-checkbox"
             />
-            <label htmlFor="present-checkbox" className="">
-              Present
-            </label>
+            <label htmlFor="present-checkbox">Present</label>
           </div>
         </div>
 
         <div className="modal-actions-group">
           {initialData && (
-            <Button type="destructive" className="" onClick={handleDelete}>
+            <Button type="destructive" onClick={handleDelete}>
               Delete
             </Button>
           )}
-          <div className="">
+          <div>
             <Button type="submit">
               {initialData ? "Save Changes" : "Add Experience"}
             </Button>

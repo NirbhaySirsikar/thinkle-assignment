@@ -81,27 +81,32 @@ const Profile = () => {
         {!isMobile && (
           <>
             {tab === "my_profile" && (
-              <button className="tab-row-button" disabled={tab === "my_profile"}>
+              <button
+                className="tab-row-button"
+                disabled={tab === "my_profile"}
+              >
                 Save Changes
               </button>
             )}
             {tab === "experience" && (
-        <button onClick={() => setIsLinkedInModalOpen(true)}
-        className="tab-row-button" >
-          Autofill with LinkedIn
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </button>
+              <button
+                onClick={() => setIsLinkedInModalOpen(true)}
+                className="tab-row-button"
+              >
+                Autofill with LinkedIn
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
             )}
           </>
         )}

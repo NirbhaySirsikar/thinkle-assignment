@@ -143,7 +143,7 @@
 .linkedin-import-button {
   cursor: pointer;
   background-color: black;
-  color:white;
+  color: white;
   padding: 1rem;
   width: 100%;
   border-radius: 0.75rem;
@@ -256,9 +256,9 @@
   color: white;
 }
 .linkedin-success h3 {
-margin-top: 1rem;
-font-size: 1.5rem;
-line-height: 1.75rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
 }
 
 .linkedin-success p {
@@ -274,10 +274,43 @@ line-height: 1.75rem;
   justify-content: center;
   margin-top: 24px;
 }
+/* Wrap selects in a position:relative container so we can place the icon */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
 
+/* Hide default dropdown arrows in some browsers */
+.select-wrapper select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.5rem; /* space for the icon on the right */
+}
+
+/* Position the chevron icon absolutely to the right */
+.select-wrapper .select-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* let clicks pass through to the select */
+  color: #6e6e73;       /* match your theme color */
+}
+
+/* For the date dropdowns specifically */
+.date-dropdowns {
+  display: flex;
+  gap: 0.5rem;
+}
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fadeIn {
@@ -297,5 +330,46 @@ line-height: 1.75rem;
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+.date-picker-group {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+.present-checkbox {
+    margin-bottom: 2rem;
+    margin-right: 0.25rem;
+}
+
+.date-picker-container > input {
+    width: 100%;
+    padding: 0.75rem;
+    border-width: 1px;
+    border-color: rgb(212 212 212);
+    border-style: solid;
+    border-radius: 0.375rem;
+}
+
+/* .date-picker-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+} */
+
+@media (max-width: 768px) {
+  .experience-content {
+    grid-template-columns: 1fr;
+  }
+
+  .date-picker-group {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media not all and (min-width: 640px) {
+  .date-picker-group {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
