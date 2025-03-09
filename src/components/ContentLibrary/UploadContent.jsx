@@ -15,6 +15,10 @@ const UploadContent = () => {
   const [description, setDescription] = useState("");
   const [contentStatus, setContentStatus] = useState("complete");
 
+  const getContentType = ()=>{
+    return contentType.charAt(0).toUpperCase() + contentType.slice(1);
+  }
+
   const handleThumbnailDrop = (e) => {
     e.preventDefault();
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
@@ -106,13 +110,13 @@ const UploadContent = () => {
 
       {/* 2) Video Information */}
       <div className="form-section">
-        <h2 className="form-section-title">Video Information</h2>
+        <h2 className="form-section-title">{getContentType()} Information</h2>
 
         <div className="form-row">
           {/* Video Title */}
           <div className="form-col">
             <label htmlFor="video-title" className="form-label">
-              Video Title*
+              {getContentType()} Title*
             </label>
             <input
               id="video-title"
@@ -189,7 +193,7 @@ const UploadContent = () => {
           {/* Type of Video (dropdown) */}
           <div className="form-col">
             <label htmlFor="video-type" className="form-label">
-              Type of Video*
+              Type of {getContentType()}*
             </label>
             <div className="select-wrapper">
               <select
@@ -318,7 +322,6 @@ const UploadContent = () => {
               <input
                 id="thumbnail-input"
                 type="file"
-                accept="image/*"
                 className="hidden"
                 style={{ display: "none" }}
                 onChange={handleThumbnailChange}
@@ -384,7 +387,6 @@ const UploadContent = () => {
               <input
                 id="video-input"
                 type="file"
-                accept="video/*"
                 className="hidden"
                 style={{ display: "none" }}
                 onChange={handleVideoChange}
@@ -397,7 +399,7 @@ const UploadContent = () => {
       {/* 4) Video Description */}
       <div className="form-section">
         <label htmlFor="description" className="form-label">
-          Add Video Description*
+          Add {getContentType()} Description*
         </label>
         <textarea
           id="description"
