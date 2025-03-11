@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import "./styles/global.css";
 import ContentLibrary from "./pages/ContentLibrary";
+import Call from "./pages/Call";
 
 const MainLayout = () => (
   <div className="app-container">
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/content-library" element={<ContentLibrary />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/call" element={<Call />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
