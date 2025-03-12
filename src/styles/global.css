@@ -70,6 +70,11 @@ a {
   margin-bottom: 30px;
 }
 
+.agora_video_player {
+  object-fit: contain !important;
+  background-color: #232323 !important;
+}
+
 @media (max-width: 1200px) {
   .cards-container {
     flex-direction: column;
